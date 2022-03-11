@@ -1,0 +1,37 @@
+{% extends "template.html" %}
+    {% block contenido %}
+
+    {% block title %}Tu biblioteca{% endblock %}
+    <div class="container col-8">
+        <table class="table table-sm table-hover table-primary table-borderless text-center ">
+            <tr class="table-success bg-dark ">
+                <th class="bg-dark" >Libro</th>
+                <th class="bg-info" >Autor</th>
+                <th class=" bg-primary" >Genero</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for libro in libros %}
+            <tr>
+                <td>{{libro.titulo}}</td>
+                <td>{{libro.autor}}</td>
+                <td>{{libro.genero}}</td>
+                <td>
+                    <a href="{{url_for('editarLibro', libro_id = libro.id )}}">
+                        <button type="button" class="btn btn-success"><img src="{{url_for('static', filename='images/editar.png') }}" width="15" height="15" alt=""></button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{url_for('eliminarLibro', libro_id = libro.id )}}" style="margin-left: 10px;">
+                        <button type="button" class="btn btn-danger"><img src="{{url_for('static', filename='images/basura.png') }}" width="15" height="15" alt=""></button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="d-grid gap.2 col-2 mx-auto">
+        <a href="{{url_for('nuevoLibro')}}" type="button" class="btn btn-succes"><button type="button" class="btn btn-success">AGREGAR LIBRO</button></i></a>
+    </div>
+    {% endblock %}
+
